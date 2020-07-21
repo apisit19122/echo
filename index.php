@@ -11,21 +11,18 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 
   <div class="wrapper">
-    <!-- Navbar -->
-    <?php require './pages/navbar.php'; ?>
-    <!-- /Navbar -->
 
-    <!-- sidebar -->
-    <?php require './pages/sidebar.php'; ?>
-    <!-- /sidebar -->
+    <?php
+    //Navbar
+    require_once 'navbar.php';
+    //sidebar
+    require_once 'sidebar.php';
+    //content
+    require_once 'content.php';
+    //footer
+    require_once 'footer.php';
+    ?>
 
-    <!-- content -->
-    <?php require './pages/content.php'; ?>
-    <!-- /content -->
-
-    <!-- footer -->
-    <?php include './pages/footer.php'; ?>
-    <!-- /footer -->
   </div>
 
   <!-- script -->
