@@ -76,7 +76,7 @@ if (isset($_POST['product_add'])) {
         mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
 
         echo "<script>";
-        echo "alert('เพิ่มสินค้า เรียบร้อยแล้ว');";
+        echo "alert('Add product successfully');";
         echo "window.location='product.php';";
         echo "</script>";
 

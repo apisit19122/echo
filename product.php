@@ -9,6 +9,8 @@ function table()
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html>
 
@@ -57,7 +59,7 @@ function table()
                                     <div class="card-header">
                                         <h1 class="card-title" style="font-size: 2rem;">List</h1>
                                         <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i> Add</button>
-                                        
+
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -95,32 +97,63 @@ function table()
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col-4">
-                                                                                <img src="<?php echo $data_product['photo']; ?>" alt="" width="100%">
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <h2><?php echo $data_product['name']; ?></h2>
-                                                                                <hr>
-                                                                                <p><?php echo $data_product['detail']; ?></p>
-                                                                                <h3>Price <?php echo $data_product['price']; ?>฿</h3>
-                                                                                <?php 
-                                                                                $active = $data_product['active'];
-                                                                                if($active == 0){
-                                                                                    echo '<span class="badge badge-pill badge-secondary">ยังไม่อนุมัติ</span>';
-                                                                                }else{
-                                                                                    echo '<span class="badge badge-pill badge-success">อนุมัติแล้ว</span>';
-                                                                                }
-                                                                                ?>
+
+                                                                    <form action="" method="post" enctype="multipart/form-data">
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col-4">
+                                                                                    <img src="<?php echo $data_product['photo']; ?>" alt="" width="100%">
+                                                                                </div>
+                                                                                <div class="col">
+                                                                                    <div class="form-group">
+                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_product['id']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Product #ID</label>
+                                                                                        <input type="text" class="form-control" name="update_productid" value="<?php echo $data_product['product_id']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Product Name</label>
+                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_product['name']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Product Detail</label>
+                                                                                        <input type="text" class="form-control" name="update_detail" value="<?php echo $data_product['detail']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Product Price</label>
+                                                                                        <input type="text" class="form-control" name="update_price" value="<?php echo $data_product['price']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Product Stock</label>
+                                                                                        <input type="text" class="form-control" name="update_stock" value="<?php echo $data_product['stock']; ?>">
+                                                                                    </div>
+
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputFile">Product Image File</label>
+                                                                                        <div class="input-group">
+                                                                                            <div class="custom-file">
+                                                                                                <input type="file" name="update_img" class="custom-file-input" id="exampleInputFile">
+                                                                                                <label class="custom-file-label" for="exampleInputFile">Choose Imagefile</label>
+                                                                                            </div>
+                                                                                            <div class="input-group-append">
+                                                                                                <span class="input-group-text" id="">Upload</span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <p style="color: red;">* หากต้องการแก้ไขให้เลือกรูป แต่หากไม่ต้องการแก้ไขให้ต้องเลือกรูปภาพ</p>
+                                                                                    </div>
+
+
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <a href="product_delete.php?id=<?= $data_product['id']; ?>" type="button" class="btn btn-danger">Delete</a>
+                                                                        <div class="modal-footer">
+                                                                            <a href="product_delete.php?id=<?= $data_product['id']; ?>" type="button" class="btn btn-danger">Delete</a>
 
-                                                                        <button type="button" class="btn btn-info">Update</button>
-                                                                    </div>
+                                                                            <button type="Submit" name="product_update" class="btn btn-info">Update</button>
+                                                                        </div>
+                                                                    </form>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -128,9 +161,48 @@ function table()
 
                                                     </tr>
                                                 <?php
-                                                }
+
+
+                                                    if (isset($_POST['product_update'])) {
+                                                        //form add_pd
+                                                        $product_id = $_POST['update_productid'];
+                                                        $name = $_POST['update_name'];
+                                                        $detail = $_POST['update_detail'];
+                                                        $price = $_POST['update_price'];
+                                                        $stock = $_POST['update_stock'];
+                                                        $id = $_POST['update_id'];
+
+                                                        $uploaddir = 'img/product';
+                                                        $uploadfile = $uploaddir . basename($_FILES['update_img']['name']);
+
+                                                        if (move_uploaded_file($_FILES['update_img']['tmp_name'], $uploadfile)) {
+
+                                                            $photo = "img/product" . $_FILES["update_img"]["name"];
+
+                                                            $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
+                                                          `detail` ='$detail', `stock` ='$stock', photo = '$photo'
+                                                          WHERE `id` = '$id'";
+                                                            mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้");
+
+                                                            echo "<script>";
+                                                            echo "alert('Update product successfully');";
+                                                            echo "window.location='product.php';";
+                                                            echo "</script>";
+                                                        } else {
+                                                            $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
+                                                          `detail` ='$detail', `stock` ='$stock'
+                                                          WHERE `id` = '$id'";
+                                                            mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้1");
+
+
+                                                            echo "<script>";
+                                                            echo "alert('Update product successfully');";
+                                                            echo "window.location='product.php';";
+                                                            echo "</script>";
+                                                        }
+                                                    }
+                                                } //end while
                                                 mysqli_close($conn);
-                                                
                                                 ?>
 
                                             </tbody>
@@ -156,4 +228,3 @@ function table()
 </body>
 
 </html>
-
