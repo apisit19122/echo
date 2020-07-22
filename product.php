@@ -1,11 +1,8 @@
 <?php
 require_once("config/connect.config.php");
 
-<<<<<<< HEAD
 // @error_reporting(E_ALL ^ E_NOTICE);
 
-=======
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
 function table()
 {
     echo '';
@@ -29,10 +26,7 @@ function table()
         <?php
         require 'navbar.php'; //Navbar
         require 'sidebar.php'; //sidebar
-<<<<<<< HEAD
         require 'product_add.php';
-=======
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
         ?>
 
         <div class="content-wrapper">
@@ -62,12 +56,8 @@ function table()
                                 <div class="card">
                                     <div class="card-header">
                                         <h1 class="card-title" style="font-size: 2rem;">List</h1>
-<<<<<<< HEAD
                                         <button type="button" class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i> Add</button>
                                         
-=======
-                                        <button type="button" class="btn btn-primary" style="float: right;"><i class="fas fa-plus-circle"></i> Add</button>
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -115,7 +105,6 @@ function table()
                                                                                 <hr>
                                                                                 <p><?php echo $data_product['detail']; ?></p>
                                                                                 <h3>Price <?php echo $data_product['price']; ?>฿</h3>
-<<<<<<< HEAD
                                                                                 <?php 
                                                                                 $active = $data_product['active'];
                                                                                 if($active == 0){
@@ -124,8 +113,6 @@ function table()
                                                                                     echo '<span class="badge badge-pill badge-success">อนุมัติแล้ว</span>';
                                                                                 }
                                                                                 ?>
-=======
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -143,10 +130,7 @@ function table()
                                                 <?php
                                                 }
                                                 mysqli_close($conn);
-<<<<<<< HEAD
                                                 
-=======
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
                                                 ?>
 
                                             </tbody>
@@ -173,37 +157,3 @@ function table()
 
 </html>
 
-<<<<<<< HEAD
-=======
-
-
-
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="./img/product/p1.png" alt="" width="100%">
-                    </div>
-                    <div class="col">
-                        <h2>Product Name</h2><hr>
-                        <p>Detailasdasdasfoijsdgfhfspiogjgfpiohjdfjgfdjfpighjiop</p>
-                        <h3>Price 100.00฿</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div> -->
->>>>>>> ddb1e72d320c8872061007d916abf5d3a13368ff
