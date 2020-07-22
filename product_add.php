@@ -35,6 +35,7 @@
                         <label for="">Stock</label>
                         <input type="number" class="form-control" name="stock" placeholder="Enter Stock">
                     </div>
+                    <!-- ภาพหลัก -->
                     <div class="form-group">
                         <label for="exampleInputFile">Image File</label>
                         <div class="input-group">
@@ -46,6 +47,35 @@
                                 <span class="input-group-text" id="">Upload</span>
                             </div>
                         </div>
+                        <p style="color: red;">* ภาพหลัก</p>
+                    </div>
+                    <!-- ภาพ1 -->
+                    <div class="form-group">
+                        <label for="exampleInputFile">Image File</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="img1" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose Imagefile</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="">Upload</span>
+                            </div>
+                        </div>
+                        <p style="color: red;">* ภาพ1</p>
+                    </div>
+                    <!-- ภาพ2 -->
+                    <div class="form-group">
+                        <label for="exampleInputFile">Image File</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" name="img2" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label" for="exampleInputFile">Choose Imagefile</label>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="">Upload</span>
+                            </div>
+                        </div>
+                        <p style="color: red;">* ภาพ1</p>
                     </div>
 
                 </div>
@@ -69,19 +99,43 @@ if (isset($_POST['product_add'])) {
 
     $uploaddir = 'img/product';
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
+    $uploadfile1 = $uploaddir . basename($_FILES['img1']['name']);
+    $uploadfile2 = $uploaddir . basename($_FILES['img2']['name']);
+
     if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
+
         $photo = "img/product" . $_FILES["img"]["name"];
+
         $sql_productadd = "INSERT into product (product_id, name, price, detail, stock, photo, createdAt, updatedAt) 
-                            values('$product_id','$name',' $price','$detail','$stock','$photo',NOW(),NOW())";
+                            values('$product_id','$name',' $price','$detail','$stock','$photo', NOW(), NOW())";
         mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
 
-        echo "<script>";
-        echo "alert('Add product successfully');";
-        echo "window.location='product.php';";
-        echo "</script>";
-
-
-        // echo '<meta http-equiv="refresh" content="2; url=product.php" />';
+        // echo "<script>";
+        // echo "alert('Add product successfully');";
+        // echo "window.location='product.php';";
+        // echo "</script>";
     }
+    $id = mysqli_insert_id($conn);
+
+    if (move_uploaded_file($_FILES['img1']['tmp_name'], $uploadfile1)) {
+
+        $photo1 = "img/product" . $_FILES["img1"]["name"];
+
+        $sql_productadd = "UPDATE product SET  `photo1` ='$photo1' WHERE `id` = '$id'";
+        mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
+    }
+    if (move_uploaded_file($_FILES['img2']['tmp_name'], $uploadfile2)) {
+
+        $photo2 = "img/product" . $_FILES["img2"]["name"];
+
+        $sql_productadd = "UPDATE product SET  `photo2` ='$photo2' WHERE `id` = '$id'";
+        mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
+    }
+
+
+    echo "<script>";
+    echo "alert('Add product successfully');";
+    echo "window.location='product.php';";
+    echo "</script>";
 }
 ?>

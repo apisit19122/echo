@@ -102,7 +102,28 @@ function table()
                                                                         <div class="modal-body">
                                                                             <div class="row">
                                                                                 <div class="col-4">
-                                                                                    <img src="<?php echo $data_product['photo']; ?>" alt="" width="100%">
+
+                                                                                    <?php
+                                                                                    $photo = $data_product['photo'];
+                                                                                    if (!empty($photo)) {
+                                                                                        echo "<img src='$photo' alt='' width='100%' >";
+                                                                                    }
+                                                                                    ?>
+
+                                                                                    <?php
+                                                                                    $photo1 = $data_product['photo1'];
+                                                                                    if (!empty($photo1)) {
+                                                                                        echo "<img src='$photo1' alt='' width='100%' >";
+                                                                                    }
+                                                                                    ?>
+
+                                                                                    <?php
+                                                                                    $photo2 = $data_product['photo2'];
+                                                                                    if (!empty($photo2)) {
+                                                                                        echo "<img src='$photo2' alt='' width='100%' >";
+                                                                                    }
+                                                                                    ?>
+
                                                                                 </div>
                                                                                 <div class="col">
                                                                                     <div class="form-group">
@@ -140,7 +161,7 @@ function table()
                                                                                                 <span class="input-group-text" id="">Upload</span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <p style="color: red;">* หากต้องการแก้ไขให้เลือกรูป แต่หากไม่ต้องการแก้ไขให้ต้องเลือกรูปภาพ</p>
+                                                                                        <p style="color: red;">* ภาพหลัก</p>
                                                                                     </div>
 
 
@@ -180,7 +201,7 @@ function table()
                                                             $photo = "img/product" . $_FILES["update_img"]["name"];
 
                                                             $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
-                                                          `detail` ='$detail', `stock` ='$stock', photo = '$photo'
+                                                          `detail` ='$detail', `stock` ='$stock', `photo` = '$photo', `updatedAt` = NOW()
                                                           WHERE `id` = '$id'";
                                                             mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้");
 
@@ -190,7 +211,7 @@ function table()
                                                             echo "</script>";
                                                         } else {
                                                             $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
-                                                          `detail` ='$detail', `stock` ='$stock'
+                                                          `detail` ='$detail', `stock` ='$stock', `updatedAt` = NOW()
                                                           WHERE `id` = '$id'";
                                                             mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้1");
 
