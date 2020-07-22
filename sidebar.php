@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="home" class="brand-link">
         <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Echo</span>
     </a>
@@ -12,7 +12,7 @@
 
                 <li class="nav-header">Menu</li>
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link">
+                    <a href="home" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Overview
@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                    <a href="/" class="nav-link">
                         <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
                             Products
@@ -30,7 +30,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="product.php" class="nav-link">
+                            <a href="product" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>List</p>
                             </a>
@@ -48,7 +48,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="orders" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>List</p>
                             </a>
@@ -65,6 +65,12 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="bank" class="nav-link">
+                                <i class="nav-icon fas fa-angle-right"></i>
+                                <p>My Bank</p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="pages/charts/chartjs.html" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>

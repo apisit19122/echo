@@ -1,12 +1,7 @@
 <?php
 require_once("config/connect.config.php");
-
 // @error_reporting(E_ALL ^ E_NOTICE);
 
-function table()
-{
-    echo '';
-}
 ?>
 
 
@@ -28,7 +23,7 @@ function table()
         <?php
         require 'navbar.php'; //Navbar
         require 'sidebar.php'; //sidebar
-        require 'product_add.php';
+        require 'bank_add.php';
         ?>
 
         <div class="content-wrapper">
@@ -37,13 +32,12 @@ function table()
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Product</h1>
+                            <h1 class="m-0 text-dark">My Bank</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Product</li>
-                                
+                                <li class="breadcrumb-item active">MyBank</li>
                             </ol>
                         </div>
                     </div>
@@ -67,43 +61,35 @@ function table()
                                         <table id="example2" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr style="text-align: center;">
-                                                    <th>Product #ID</th>
-                                                    <th>img</th>
-                                                    <th>Name</th>
-                                                    <th>Stock</th>
+                                                    <th>Bank #ID</th>
+                                                    <th>Photo</th>
+                                                    <th>NameBank</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <?php
-                                                $sql_product = "SELECT * FROM product";
-                                                $query_product = mysqli_query($conn, $sql_product);
-                                                while ($data_product = mysqli_fetch_array($query_product, MYSQLI_ASSOC)) {
+                                                $sql_bank = "SELECT * FROM bank";
+                                                $query_bank = mysqli_query($conn, $sql_bank);
+                                                while ($data_bank = mysqli_fetch_array($query_bank, MYSQLI_ASSOC)) {
                                                 ?>
                                                     <tr>
-                                                        <td style="text-align: center; width: 20%;"><?php echo $data_product['product_id']; ?></td>
-                                                        <td style="text-align: center; width: 15%;"><img src="<?php echo $data_product['photo']; ?>" width="100px" height="90px" alt=""></td>
-                                                        <td style="text-align: center; width: 20%;"><?php echo $data_product['name']; ?></td>
+                                                        <td style="text-align: center; width: 2%;"><?php echo $data_bank['id']; ?></td>
+                                                        <td style="text-align: center; width: 15%;"><img src="<?php echo $data_bank['photo']; ?>" width="100px" height="90px" alt=""></td>
+                                                        <td style="text-align: center; width: 5%;"><?php echo $data_bank['namebank']; ?></td>
 
-                                                        <?php 
-                                                        $stock = $data_product['stock'];
-                                                        if ($stock == 0){
-                                                            echo ' <td style="text-align: right; width: 5%; color: red;">Out Of Stock</td>';
-                                                        }else{
-                                                            echo "<td style='text-align: right; width: 5%;'> $stock</td>";
-                                                        }
-                                                        ?>
-                                                       
 
-                                                        <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $data_product['id']; ?>"><i style="font-size: 40px;" class="fas fa-eye"></i></a></td>
+                                                        <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $data_bank['id']; ?>">
+                                                                <i style="font-size: 60px;" class="fas fa-eye"></i></a>
+                                                        </td>
 
                                                         <!-- Model ProductDetail -->
-                                                        <div class="modal fade" id="view<?php echo $data_product['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="view<?php echo $data_bank['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Detail <b>Bank #ID<?php echo $data_bank['id']; ?></b> </h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -115,51 +101,31 @@ function table()
                                                                                 <div class="col-4">
 
                                                                                     <?php
-                                                                                    $photo = $data_product['photo'];
+                                                                                    $photo = $data_bank['photo'];
                                                                                     if (!empty($photo)) {
                                                                                         echo "<img src='$photo' alt='' width='100%' >";
-                                                                                    }
-                                                                                    ?>
-
-                                                                                    <?php
-                                                                                    $photo1 = $data_product['photo1'];
-                                                                                    if (!empty($photo1)) {
-                                                                                        echo "<img src='$photo1' alt='' width='100%' >";
-                                                                                    }
-                                                                                    ?>
-
-                                                                                    <?php
-                                                                                    $photo2 = $data_product['photo2'];
-                                                                                    if (!empty($photo2)) {
-                                                                                        echo "<img src='$photo2' alt='' width='100%' >";
                                                                                     }
                                                                                     ?>
 
                                                                                 </div>
                                                                                 <div class="col">
                                                                                     <div class="form-group">
-                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_product['id']; ?>">
+                                                                                        <label for="">Name</label>
+                                                                                        <input type="text" class="form-control" name="update_id" value="<?php echo $data_bank['name']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product #ID</label>
-                                                                                        <input type="text" class="form-control" name="update_productid" value="<?php echo $data_product['product_id']; ?>">
+                                                                                        <label for="">NameBank</label>
+                                                                                        <input type="text" class="form-control" name="update_productid" value="<?php echo $data_bank['namebank']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Name</label>
-                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_product['name']; ?>">
+                                                                                        <label for="">Account</label>
+                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_bank['account']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Detail</label>
-                                                                                        <input type="text" class="form-control" name="update_detail" value="<?php echo $data_product['detail']; ?>">
+                                                                                        <label for="">Promptpay</label>
+                                                                                        <input type="text" class="form-control" name="update_detail" value="<?php echo $data_bank['promptpay']; ?>">
                                                                                     </div>
-                                                                                    <div class="form-group">
-                                                                                        <label for="">Product Price</label>
-                                                                                        <input type="text" class="form-control" name="update_price" value="<?php echo $data_product['price']; ?>">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <label for="">Product Stock</label>
-                                                                                        <input type="text" class="form-control" name="update_stock" value="<?php echo $data_product['stock']; ?>">
-                                                                                    </div>
+
 
                                                                                     <div class="form-group">
                                                                                         <label for="exampleInputFile">Product Image File</label>
@@ -172,7 +138,6 @@ function table()
                                                                                                 <span class="input-group-text" id="">Upload</span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <p style="color: red;">* ภาพหลัก</p>
                                                                                     </div>
 
 

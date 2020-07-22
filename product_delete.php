@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
     echo "<script>";
     echo "alert('ลบสินค้าออกจากรายการเรียบร้อย');";
-    echo "window.location='product.php'";
+    echo "window.location='product'";
     echo "</script>";
 }
 

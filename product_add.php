@@ -47,7 +47,7 @@
                                 <span class="input-group-text" id="">Upload</span>
                             </div>
                         </div>
-                        <p style="color: red;">* ภาพหลัก</p>
+                        <p style="color: red;">* ภาพหลัก กรุณาใส่รูปภาพ</p>
                     </div>
                     <!-- ภาพ1 -->
                     <div class="form-group">
@@ -61,7 +61,7 @@
                                 <span class="input-group-text" id="">Upload</span>
                             </div>
                         </div>
-                        <p style="color: red;">* ภาพ1</p>
+                        <p style="color: red;">* ภาพ กรุณาใส่รูปภาพ</p>
                     </div>
                     <!-- ภาพ2 -->
                     <div class="form-group">
@@ -75,7 +75,7 @@
                                 <span class="input-group-text" id="">Upload</span>
                             </div>
                         </div>
-                        <p style="color: red;">* ภาพ1</p>
+                        <p style="color: red;">* ภาพ กรุณาใส่รูปภาพ</p>
                     </div>
 
                 </div>
@@ -135,7 +135,7 @@ if (isset($_POST['product_add'])) {
 
     echo "<script>";
     echo "alert('Add product successfully');";
-    echo "window.location='product.php';";
+    echo "window.location='product';";
     echo "</script>";
 }
 ?>
