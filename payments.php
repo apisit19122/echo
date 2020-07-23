@@ -68,7 +68,7 @@ require_once("config/connect.config.php");
                                             <tbody>
 
                                                 <?php
-                                                $sql_payment = "SELECT * FROM payment";
+                                                $sql_payment = "SELECT * FROM payment  ";
                                                 $query_payment = mysqli_query($conn, $sql_payment);
                                                 while ($data_payment = mysqli_fetch_array($query_payment, MYSQLI_ASSOC)) {
                                                 ?>
@@ -83,12 +83,12 @@ require_once("config/connect.config.php");
                                                                 <i style="font-size: 40px;" class="fas fa-eye"></i></a>
                                                         </td>
 
-                                                        <!-- Model BankDetail -->
+                                                        <!-- Model PaymentDetail -->
                                                         <div class="modal fade" id="view<?php echo $data_payment['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Detail <b>Bank #ID<?php echo $data_bank['id']; ?></b> </h5>
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Detail <b>Payment #ID<?php echo $data_payment['id']; ?></b> </h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -100,32 +100,32 @@ require_once("config/connect.config.php");
                                                                                 <div class="col-4">
 
                                                                                     <?php
-                                                                                    $photo = $data_bank['photo'];
-                                                                                    if (!empty($photo)) {
-                                                                                        echo "<img src='$photo' alt='' width='100%' >";
+                                                                                    $img = $data_payment['img'];
+                                                                                    if (!empty($img)) {
+                                                                                        echo "<img src='$img' alt='' width='100%' >";
                                                                                     }
                                                                                     ?>
 
                                                                                 </div>
                                                                                 <div class="col">
                                                                                     <div class="form-group">
-                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_bank['id']; ?>">
+                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_payment['id']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Name</label>
-                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_bank['name']; ?>">
+                                                                                        <label for="">Credit</label>
+                                                                                        <input type="text" class="form-control" name="update_credit" value="<?php echo $data_payment['credit']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">NameBank</label>
-                                                                                        <input type="text" class="form-control" name="update_namebank" value="<?php echo $data_bank['namebank']; ?>">
+                                                                                        <label for="">Order</label>
+                                                                                        <input type="text" class="form-control" name="update_orderID" value="<?php echo $data_payment['orderID.order_code']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Account</label>
-                                                                                        <input type="text" class="form-control" name="update_account" value="<?php echo $data_bank['account']; ?>">
+                                                                                        <label for="">Bank</label>
+                                                                                        <input type="text" class="form-control" name="update_bankID" value="<?php echo $data_payment['bankID']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Promptpay</label>
-                                                                                        <input type="text" class="form-control" name="update_promptpay" value="<?php echo $data_bank['promptpay']; ?>">
+                                                                                        <label for="">Paymentstatus</label>
+                                                                                        <input type="text" class="form-control" name="update_payment_statusID" value="<?php echo $data_payment['payment_statusID']; ?>">
                                                                                     </div>
 
                                                                                     <div class="form-group">
@@ -141,39 +141,6 @@ require_once("config/connect.config.php");
                                                                                         </div>
                                                                                     </div>
 
-                                                                                    <?php
-                                                                                    if ($active == 0) {
-                                                                                        echo '
-                                                                                        <div class="form-check">
-                                                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1">
-                                                                                            <label class="form-check-label" for="exampleRadios1">
-                                                                                                On
-                                                                                            </label>
-                                                                                        </div>';
-                                                                                        echo '
-                                                                                        <div class="form-check">
-                                                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="0" checked>
-                                                                                            <label class="form-check-label" for="exampleRadios2">
-                                                                                                Off
-                                                                                            </label>
-                                                                                        </div>';
-                                                                                    } else {
-                                                                                        echo '
-                                                                                        <div class="form-check">
-                                                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>
-                                                                                            <label class="form-check-label" for="exampleRadios1">
-                                                                                                On
-                                                                                            </label>
-                                                                                        </div>';
-                                                                                        echo '
-                                                                                        <div class="form-check">
-                                                                                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="0">
-                                                                                            <label class="form-check-label" for="exampleRadios2">
-                                                                                                Off
-                                                                                            </label>
-                                                                                        </div>';
-                                                                                    }
-                                                                                    ?>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

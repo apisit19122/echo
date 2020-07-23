@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2020 at 06:30 AM
+-- Generation Time: Jul 23, 2020 at 11:23 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -67,6 +67,13 @@ CREATE TABLE `customer` (
   `paymentID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `phone`, `address`, `IDcard`, `createdAt`, `updatedAt`, `orderID`, `paymentID`) VALUES
+(1, 'OaT', '0909878787', 'AIA', 2147483647, '2020-07-23 16:06:59', '2020-07-23 16:07:00', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -75,13 +82,40 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `order` (
   `id` int(11) NOT NULL,
-  `sum_price` decimal(10,2) DEFAULT 0.00,
-  `amount` int(11) DEFAULT 0,
+  `order_code` char(255) NOT NULL,
+  `net_total` decimal(10,2) DEFAULT 0.00,
   `active` tinyint(4) DEFAULT 0,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `productID` int(11) DEFAULT NULL
+  `orderdetailID` int(11) DEFAULT NULL,
+  `shippingcostID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `id` int(11) NOT NULL,
+  `unit` int(11) NOT NULL DEFAULT 0,
+  `unit_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `unittotal_price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `productID` int(11) DEFAULT NULL,
+  `customerID` int(11) DEFAULT NULL,
+  `orderID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`id`, `unit`, `unit_price`, `unittotal_price`, `createdAt`, `updatedAt`, `productID`, `customerID`, `orderID`) VALUES
+(1, 2, '7000.00', '14000.00', '2020-07-23 16:05:16', '2020-07-23 16:05:16', 35, 1, NULL),
+(2, 1, '1500.00', '1500.00', '2020-07-23 16:08:07', '2020-07-23 16:08:08', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -91,8 +125,8 @@ CREATE TABLE `order` (
 
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
-  `credit` decimal(10,0) DEFAULT 0,
-  `price` decimal(10,2) DEFAULT 0.00,
+  `credit` decimal(10,2) DEFAULT 0.00,
+  `img` text DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `orderID` int(11) DEFAULT NULL,
@@ -148,11 +182,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `product_id`, `name`, `price`, `detail`, `stock`, `photo`, `photo1`, `photo2`, `active`, `createdAt`, `updatedAt`) VALUES
-(1, 'TG-ECHO001CA', 'Calbilberry', '650.00', 'Goodd', 100, 'img/product/p1.png', 'img/product/p1.png', 'img/product/p1.png', 0, '2020-07-21 13:51:28', '2020-07-23 08:44:03'),
+(1, 'TG-ECHO001CA', 'Calbilberry', '650.00', 'Good', 100, 'img/product/p1.png', 'img/product/p1.png', 'img/product/p1.png', 0, '2020-07-21 13:51:28', '2020-07-23 08:44:03'),
 (2, 'TG-ECHO004CO', 'Collysine', '450.00', 'Good', 100, 'img/product/p2.png', NULL, NULL, 0, '2020-07-21 13:51:31', '2020-07-23 08:44:19'),
 (3, 'TG-ECHO003RI', 'Riciomeg', '550.00', 'Good', 100, 'img/product/p3.png', NULL, NULL, 0, '2020-07-21 13:51:41', '2020-07-23 08:44:11'),
 (4, 'TG-ECHO002VI', 'Vitaoxxy FP', '650.00', 'Good', 100, 'img/product/p4.png', NULL, NULL, 0, '2020-07-21 13:51:41', '2020-07-23 08:43:55'),
-(35, 'OAT-8000', 'Big Brother', '5000.00', 'Good', 1, 'img/product1.jpg', 'img/product1.jpg', 'img/product1.jpg', 0, '2020-07-23 11:11:44', '2020-07-23 11:11:44');
+(35, 'OAT-8000', 'Big Brother', '5000.00', 'Good', 10, 'img/product1.jpg', 'img/product1.jpg', 'img/product1.jpg', 0, '2020-07-23 11:11:44', '2020-07-23 14:38:33');
 
 -- --------------------------------------------------------
 
@@ -168,6 +202,14 @@ CREATE TABLE `shippingcost` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shippingcost`
+--
+
+INSERT INTO `shippingcost` (`id`, `name`, `cost`, `type`, `createdAt`, `updatedAt`) VALUES
+(1, 'Test', '50', 'EMS', '2020-07-23 15:53:22', '2020-07-23 15:53:23'),
+(2, 'Test2', '50', 'Flash', '2020-07-23 15:55:39', '2020-07-23 15:55:40');
 
 --
 -- Indexes for dumped tables
@@ -192,7 +234,17 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `order`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `productID` (`productID`);
+  ADD KEY `shippingcostID` (`shippingcostID`),
+  ADD KEY `productID` (`orderdetailID`) USING BTREE;
+
+--
+-- Indexes for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productID` (`productID`),
+  ADD KEY `customerID` (`customerID`),
+  ADD KEY `orderID` (`orderID`);
 
 --
 -- Indexes for table `payment`
@@ -235,19 +287,25 @@ ALTER TABLE `bank`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `payment_status`
@@ -265,7 +323,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `shippingcost`
 --
 ALTER TABLE `shippingcost`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -282,7 +340,16 @@ ALTER TABLE `customer`
 -- Constraints for table `order`
 --
 ALTER TABLE `order`
-  ADD CONSTRAINT `FK_buy_product_product` FOREIGN KEY (`productID`) REFERENCES `product` (`id`);
+  ADD CONSTRAINT `FK_order_order_detail` FOREIGN KEY (`shippingcostID`) REFERENCES `order_detail` (`id`),
+  ADD CONSTRAINT `FK_order_shippingcost` FOREIGN KEY (`orderdetailID`) REFERENCES `shippingcost` (`id`);
+
+--
+-- Constraints for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `FK_order_detail_customer` FOREIGN KEY (`customerID`) REFERENCES `customer` (`id`),
+  ADD CONSTRAINT `FK_order_detail_order` FOREIGN KEY (`orderID`) REFERENCES `order` (`id`),
+  ADD CONSTRAINT `FK_order_detail_product` FOREIGN KEY (`productID`) REFERENCES `product` (`id`);
 
 --
 -- Constraints for table `payment`
