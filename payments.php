@@ -68,7 +68,7 @@ require_once("config/connect.config.php");
                                             <tbody>
 
                                                 <?php
-                                                $sql_payment = "SELECT * FROM payment  ";
+                                                $sql_payment = "SELECT * FROM payment AS t1 INNER JOIN `order` AS t2 ON (t1.orderID = `t2`.id) INNER JOIN `bank` AS t3 ON (t1.bankID = `t3`.id) INNER JOIN `payment_status` AS t4 ON (t1.payment_statusID = `t4`.id)";
                                                 $query_payment = mysqli_query($conn, $sql_payment);
                                                 while ($data_payment = mysqli_fetch_array($query_payment, MYSQLI_ASSOC)) {
                                                 ?>
@@ -117,15 +117,15 @@ require_once("config/connect.config.php");
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Order</label>
-                                                                                        <input type="text" class="form-control" name="update_orderID" value="<?php echo $data_payment['orderID.order_code']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_orderID" value="<?php echo $data_payment['order_code']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Bank</label>
-                                                                                        <input type="text" class="form-control" name="update_bankID" value="<?php echo $data_payment['bankID']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_bankID" value="<?php echo $data_payment['namebank']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Paymentstatus</label>
-                                                                                        <input type="text" class="form-control" name="update_payment_statusID" value="<?php echo $data_payment['payment_statusID']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_payment_statusID" value="<?php echo $data_payment['status_name']; ?>">
                                                                                     </div>
 
                                                                                     <div class="form-group">
