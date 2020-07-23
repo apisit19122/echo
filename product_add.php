@@ -81,7 +81,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <button type="submit" name="product_add" class="btn btn-primary btn-block">Save</button>
+                    <button type="submit" name="product_add" class="btn btn-primary btn-block"><i class="fas fa-folder-plus"></i> Save</button>
                 </div>
             </form>
         </div>
@@ -134,7 +134,7 @@ if (isset($_POST['product_add'])) {
 
 
     echo "<script>";
-    echo "alert('Add product successfully');";
+    echo "alert('Add product list successfully');";
     echo "window.location='product';";
     echo "</script>";
 }

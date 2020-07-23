@@ -66,7 +66,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="bank" class="nav-link">
+                            <a href="mybank" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>My Bank</p>
                             </a>

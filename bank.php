@@ -81,10 +81,10 @@ require_once("config/connect.config.php");
 
 
                                                         <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $data_bank['id']; ?>">
-                                                                <i style="font-size: 60px;" class="fas fa-eye"></i></a>
+                                                                <i style="font-size: 40px;" class="fas fa-eye"></i></a>
                                                         </td>
 
-                                                        <!-- Model ProductDetail -->
+                                                        <!-- Model BankDetail -->
                                                         <div class="modal fade" id="view<?php echo $data_bank['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
@@ -110,25 +110,28 @@ require_once("config/connect.config.php");
                                                                                 </div>
                                                                                 <div class="col">
                                                                                     <div class="form-group">
+                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_bank['id']; ?>">
+                                                                                    </div>
+                                                                                    <div class="form-group">
                                                                                         <label for="">Name</label>
-                                                                                        <input type="text" class="form-control" name="update_id" value="<?php echo $data_bank['name']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_bank['name']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">NameBank</label>
-                                                                                        <input type="text" class="form-control" name="update_productid" value="<?php echo $data_bank['namebank']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_namebank" value="<?php echo $data_bank['namebank']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Account</label>
-                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_bank['account']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_account" value="<?php echo $data_bank['account']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Promptpay</label>
-                                                                                        <input type="text" class="form-control" name="update_detail" value="<?php echo $data_bank['promptpay']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_promptpay" value="<?php echo $data_bank['promptpay']; ?>">
                                                                                     </div>
 
 
                                                                                     <div class="form-group">
-                                                                                        <label for="exampleInputFile">Product Image File</label>
+                                                                                        <label for="exampleInputFile">Bank Image File</label>
                                                                                         <div class="input-group">
                                                                                             <div class="custom-file">
                                                                                                 <input type="file" name="update_img" class="custom-file-input" id="exampleInputFile">
@@ -145,56 +148,54 @@ require_once("config/connect.config.php");
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <a href="product_delete.php?id=<?= $data_product['id']; ?>" type="button" class="btn btn-danger">Delete</a>
+                                                                            <a href="bank_delete.php?id=<?= $data_bank['id']; ?>" type="button" class="btn btn-danger">Delete</a>
 
-                                                                            <button type="Submit" name="product_update" class="btn btn-info">Update</button>
+                                                                            <button type="Submit" name="bank_update" class="btn btn-info">Update</button>
                                                                         </div>
                                                                     </form>
 
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- /Model ProductDetail -->
+                                                        <!-- /Model BankDetail -->
 
                                                     </tr>
                                                 <?php
 
 
-                                                    if (isset($_POST['product_update'])) {
+                                                    if (isset($_POST['bank_update'])) {
                                                         //form add_pd
-                                                        $product_id = $_POST['update_productid'];
                                                         $name = $_POST['update_name'];
-                                                        $detail = $_POST['update_detail'];
-                                                        $price = $_POST['update_price'];
-                                                        $stock = $_POST['update_stock'];
+                                                        $namebank = $_POST['update_namebank'];
+                                                        $account = $_POST['update_account'];
+                                                        $promptpay = $_POST['update_promptpay'];
                                                         $id = $_POST['update_id'];
 
-                                                        $uploaddir = 'img/product';
+                                                        $uploaddir = 'img/money/';
                                                         $uploadfile = $uploaddir . basename($_FILES['update_img']['name']);
 
                                                         if (move_uploaded_file($_FILES['update_img']['tmp_name'], $uploadfile)) {
 
-                                                            $photo = "img/product" . $_FILES["update_img"]["name"];
+                                                            $photo = "img/money/" . $_FILES["update_img"]["name"];
 
-                                                            $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
-                                                          `detail` ='$detail', `stock` ='$stock', `photo` = '$photo', `updatedAt` = NOW()
+                                                            $sql_updatabank = "UPDATE `bank` SET `name` ='$name', `namebank` ='$namebank', `account` ='$account', 
+                                                          `promptpay` ='$promptpay', `photo` = '$photo', `updatedAt` = NOW()
                                                           WHERE `id` = '$id'";
-                                                            mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้");
+                                                            mysqli_query($conn, $sql_updatabank) or die("อัพเดท ไม่ได้");
 
                                                             echo "<script>";
                                                             echo "alert('Update product successfully');";
                                                             echo "window.location='product';";
                                                             echo "</script>";
                                                         } else {
-                                                            $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
-                                                          `detail` ='$detail', `stock` ='$stock', `updatedAt` = NOW()
+                                                            $sql_updatabank = "UPDATE `bank` SET `name` ='$name', `namebank` ='$namebank', `account` ='$account', 
+                                                          `promptpay` ='$promptpay', `updatedAt` = NOW()
                                                           WHERE `id` = '$id'";
-                                                            mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้1");
-
+                                                            mysqli_query($conn, $sql_updatabank) or die("อัพเดท ไม่ได้1");
 
                                                             echo "<script>";
-                                                            echo "alert('Update product successfully');";
-                                                            echo "window.location='product';";
+                                                            echo "alert('Update bank list successfully');";
+                                                            echo "window.location='mybank';";
                                                             echo "</script>";
                                                         }
                                                     }

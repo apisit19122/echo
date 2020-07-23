@@ -180,9 +180,9 @@ function table()
                                                                             </div>
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <a href="product_delete.php?id=<?= $data_product['id']; ?>" type="button" class="btn btn-danger">Delete</a>
+                                                                            <a href="product_delete.php?id=<?= $data_product['id']; ?>" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
 
-                                                                            <button type="Submit" name="product_update" class="btn btn-info">Update</button>
+                                                                            <button type="Submit" name="product_update" class="btn btn-info"><i class="fas fa-edit"></i> Update</button>
                                                                         </div>
                                                                     </form>
 
@@ -217,7 +217,7 @@ function table()
                                                             mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้");
 
                                                             echo "<script>";
-                                                            echo "alert('Update product successfully');";
+                                                            echo "alert('Update product list successfully');";
                                                             echo "window.location='product';";
                                                             echo "</script>";
                                                         } else {
@@ -228,7 +228,7 @@ function table()
 
 
                                                             echo "<script>";
-                                                            echo "alert('Update product successfully');";
+                                                            echo "alert('Update product list successfully');";
                                                             echo "window.location='product';";
                                                             echo "</script>";
                                                         }

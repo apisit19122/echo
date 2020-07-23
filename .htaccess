@@ -5,5 +5,5 @@
 
     RewriteRule product product.php
     RewriteRule home index.php
-    RewriteRule bank bank.php
+    RewriteRule mybank bank.php
 </IfModule>

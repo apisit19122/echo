@@ -58,19 +58,19 @@ if (isset($_POST['bank_add'])) {
     $account = $_POST['account'];
     $promptpay = $_POST['promptpay'];
 
-    $uploaddir = 'img/bank/';
+    $uploaddir = 'img/money/';
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
 
     if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
 
-        $photo = "img/bank/" . $_FILES["img"]["name"];
+        $photo = "img/money/" . $_FILES["img"]["name"];
 
         $sql_bankadd = "INSERT into bank (name, namebank, account, promptpay, photo, createdAt, updatedAt) 
                             values('$name','$namebank',' $account','$promptpay','$photo', NOW(), NOW())";
         mysqli_query($conn, $sql_bankadd) or die("insert ไม่ได้");
 
         echo "<script>";
-        echo "alert('Add bank successfully');";
+        echo "alert('Add bank list successfully');";
         echo "window.location='bank';";
         echo "</script>";
     }

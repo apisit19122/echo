@@ -8,12 +8,12 @@ require_once("config/connect.config.php");
 $getid = $_GET['id'];
 if (isset($_GET['id'])) {
 
-    $sql = "delete from product where id='" . $_GET['id'] . "'";
+    $sql = "delete from bank where id='" . $_GET['id'] . "'";
     mysqli_query($conn, $sql) or die("ลบข้อมูลไม่สำเร็จ");
 
     echo "<script>";
-    echo "alert('Delete Product list successfully');";
-    echo "window.location='product'";
+    echo "alert('Delete bank list successfully');";
+    echo "window.location='mybank'";
     echo "</script>";
 }
 
