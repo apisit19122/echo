@@ -1,3 +1,8 @@
+<?php
+require 'config/connect.config.php';
+// @error_reporting(E_ALL ^ E_NOTICE);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,13 +19,13 @@
 
     <?php
     //Navbar
-    require_once 'navbar.php';
+    require 'navbar.php';
     //sidebar
-    require_once 'sidebar.php';
+    require 'sidebar.php';
     //content
-    require_once 'content.php';
+    require 'content.php';
     //footer
-    require_once 'footer.php';
+    require 'footer.php';
     ?>
 
   </div>

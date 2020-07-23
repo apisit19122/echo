@@ -73,7 +73,6 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                         <p>
                             Payments
                             <i class="right fas fa-angle-left"></i>
-                            <!-- <span class="badge badge-info right"><?php echo $data_productcount['productcount'];?></span> -->
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -87,7 +86,7 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="payment" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Slip</p>
                             </a>

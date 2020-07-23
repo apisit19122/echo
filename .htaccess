@@ -6,4 +6,5 @@
     RewriteRule product product.php
     RewriteRule home index.php
     RewriteRule mybank bank.php
+    RewriteRule payment payments.php
 </IfModule>
