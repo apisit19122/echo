@@ -43,7 +43,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-                    <button type="submit" name="bank_add" class="btn btn-primary btn-block">Save</button>
+                    <button type="submit" name="bank_add" class="btn btn-primary btn-block"><i class="fas fa-folder-plus"></i> Save</button>
                 </div>
             </form>
         </div>
@@ -61,18 +61,25 @@ if (isset($_POST['bank_add'])) {
     $uploaddir = 'img/money/';
     $uploadfile = $uploaddir . basename($_FILES['img']['name']);
 
+
     if (move_uploaded_file($_FILES['img']['tmp_name'], $uploadfile)) {
 
         $photo = "img/money/" . $_FILES["img"]["name"];
 
         $sql_bankadd = "INSERT into bank (name, namebank, account, promptpay, photo, createdAt, updatedAt) 
-                            values('$name','$namebank',' $account','$promptpay','$photo', NOW(), NOW())";
+                                values('$name','$namebank',' $account','$promptpay','$photo', NOW(), NOW())";
         mysqli_query($conn, $sql_bankadd) or die("insert ไม่ได้");
 
-        echo "<script>";
-        echo "alert('Add bank list successfully');";
-        echo "window.location='bank';";
-        echo "</script>";
+        echo '
+            <script language="JavaScript">
+                swal({
+                    title: "Successfully",
+                    text: "Add bank list",
+                    icon: "success",
+                    button: false,
+                });
+            </script>';
+        echo '<meta http-equiv="refresh" content="2; url=mybank" />';
     }
 }
 ?>

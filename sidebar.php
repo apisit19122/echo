@@ -1,3 +1,15 @@
+<?php
+// Product Count
+$sql_productcount = "select count(*) as productcount from product ";
+$result_productcount = mysqli_query($conn, $sql_productcount);
+$data_productcount = mysqli_fetch_assoc($result_productcount);
+// Mybank Count
+$sql_mybankcount = "select count(*) as mybankcount from bank ";
+$result_mybankcount = mysqli_query($conn, $sql_mybankcount);
+$data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
+
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="home" class="brand-link">
@@ -25,7 +37,7 @@
                         <p>
                             Products
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">0</span>
+                            <span class="badge badge-info right"><?php echo $data_productcount['productcount'];?></span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -61,14 +73,17 @@
                         <p>
                             Payments
                             <i class="right fas fa-angle-left"></i>
-                            <span class="badge badge-info right">0</span>
+                            <!-- <span class="badge badge-info right"><?php echo $data_productcount['productcount'];?></span> -->
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="mybank" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
-                                <p>My Bank</p>
+                                <p>
+                                    My Bank
+                                    <span class="badge badge-info right"><?php echo $data_mybankcount['mybankcount'];?></span>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -43,7 +43,7 @@ function table()
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Product</li>
-                                
+
                             </ol>
                         </div>
                     </div>
@@ -86,15 +86,15 @@ function table()
                                                         <td style="text-align: center; width: 15%;"><img src="<?php echo $data_product['photo']; ?>" width="100px" height="90px" alt=""></td>
                                                         <td style="text-align: center; width: 20%;"><?php echo $data_product['name']; ?></td>
 
-                                                        <?php 
+                                                        <?php
                                                         $stock = $data_product['stock'];
-                                                        if ($stock == 0){
+                                                        if ($stock == 0) {
                                                             echo ' <td style="text-align: right; width: 5%; color: red;">Out Of Stock</td>';
-                                                        }else{
+                                                        } else {
                                                             echo "<td style='text-align: right; width: 5%;'> $stock</td>";
                                                         }
                                                         ?>
-                                                       
+
 
                                                         <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $data_product['id']; ?>"><i style="font-size: 40px;" class="fas fa-eye"></i></a></td>
 
@@ -216,21 +216,35 @@ function table()
                                                           WHERE `id` = '$id'";
                                                             mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้");
 
-                                                            echo "<script>";
-                                                            echo "alert('Update product list successfully');";
-                                                            echo "window.location='product';";
-                                                            echo "</script>";
+                                                            echo '
+                                                            <script language="JavaScript">
+                                                                swal({
+                                                                    title: "Successfully",
+                                                                    text: "Update product list",
+                                                                    icon: "success",
+                                                                    button: false,
+                                                                });
+                                                            </script>';
+                                                            echo '<meta http-equiv="refresh" content="2; url=product" />';
                                                         } else {
                                                             $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
                                                           `detail` ='$detail', `stock` ='$stock', `updatedAt` = NOW()
                                                           WHERE `id` = '$id'";
                                                             mysqli_query($conn, $sql_updataproduct) or die("อัพเดท ไม่ได้1");
-
-
-                                                            echo "<script>";
-                                                            echo "alert('Update product list successfully');";
-                                                            echo "window.location='product';";
-                                                            echo "</script>";
+                                                            // echo "<script>";
+                                                            // echo "alert('Update product list successfully');";
+                                                            // echo "window.location='product';";
+                                                            // echo "</script>";
+                                                            echo '
+                                                            <script language="JavaScript">
+                                                                swal({
+                                                                    title: "Successfully",
+                                                                    text: "Update product list",
+                                                                    icon: "success",
+                                                                    button: false,
+                                                                });
+                                                            </script>';
+                                                            echo '<meta http-equiv="refresh" content="2; url=product" />';
                                                         }
                                                     }
                                                 } //end while

@@ -131,11 +131,15 @@ if (isset($_POST['product_add'])) {
         $sql_productadd = "UPDATE product SET  `photo2` ='$photo2' WHERE `id` = '$id'";
         mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
     }
-
-
-    echo "<script>";
-    echo "alert('Add product list successfully');";
-    echo "window.location='product';";
-    echo "</script>";
+    echo '
+    <script language="JavaScript">
+        swal({
+            title: "Successfully",
+            text: "Add product list",
+            icon: "success",
+            button: false,
+        });
+    </script>';
+    echo '<meta http-equiv="refresh" content="2; url=product" />';
 }
 ?>

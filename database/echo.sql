@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2020 at 12:47 PM
+-- Generation Time: Jul 23, 2020 at 06:30 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -24,18 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buy_product`
+-- Table structure for table `bank`
 --
 
-CREATE TABLE `buy_product` (
+CREATE TABLE `bank` (
   `id` int(11) NOT NULL,
-  `sum_price` decimal(10,2) DEFAULT 0.00,
-  `amount` int(11) DEFAULT 0,
+  `name` varchar(255) NOT NULL,
+  `namebank` varchar(255) NOT NULL,
+  `account` char(10) DEFAULT NULL,
+  `promptpay` char(13) DEFAULT NULL,
+  `photo` text DEFAULT NULL,
   `active` tinyint(4) DEFAULT 0,
   `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  `productID` int(11) DEFAULT NULL
+  `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bank`
+--
+
+INSERT INTO `bank` (`id`, `name`, `namebank`, `account`, `promptpay`, `photo`, `active`, `createdAt`, `updatedAt`) VALUES
+(1, 'Echo', 'ธนาคารกสิกรไทย', '1234567890', '', 'img/money/k.png', 0, '2020-07-22 16:30:09', '2020-07-23 11:14:15'),
+(9, 'test', 'ธนาคารกรุงไทย', ' 1234', '12345', 'img/money/ktb.jpg', 0, '2020-07-23 09:10:38', '2020-07-23 09:56:58'),
+(10, 'test', 'ธนาคารไทยพาณิชย์', ' 1234', '1234', 'img/money/scb.jpg', 0, '2020-07-23 09:35:36', '2020-07-23 09:35:36'),
+(11, 'test', 'ธนาคารกรุงเทพ', ' 1234', '1234', 'img/money/BBL.png', 0, '2020-07-23 09:38:49', '2020-07-23 11:12:02');
 
 -- --------------------------------------------------------
 
@@ -51,8 +63,24 @@ CREATE TABLE `customer` (
   `IDcard` int(13) DEFAULT NULL,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `buy_productID` int(11) DEFAULT NULL,
+  `orderID` int(11) DEFAULT NULL,
   `paymentID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL,
+  `sum_price` decimal(10,2) DEFAULT 0.00,
+  `amount` int(11) DEFAULT 0,
+  `active` tinyint(4) DEFAULT 0,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL,
+  `productID` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -67,8 +95,32 @@ CREATE TABLE `payment` (
   `price` decimal(10,2) DEFAULT 0.00,
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
-  `buy_productID` int(11) DEFAULT NULL
+  `orderID` int(11) DEFAULT NULL,
+  `bankID` int(11) DEFAULT NULL,
+  `payment_statusID` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_status`
+--
+
+CREATE TABLE `payment_status` (
+  `id` int(11) NOT NULL,
+  `status_name` varchar(255) NOT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_status`
+--
+
+INSERT INTO `payment_status` (`id`, `status_name`, `createdAt`, `updatedAt`) VALUES
+(1, 'รอชำระเงิน', '2020-07-23 10:44:41', '2020-07-23 10:44:42'),
+(2, 'อยู่ระหว่างการดำเนินงาน', '2020-07-23 10:44:57', '2020-07-23 10:44:58'),
+(3, 'จัดส่งสินค้าแล้ว', '2020-07-23 10:45:11', '2020-07-23 10:45:12');
 
 -- --------------------------------------------------------
 
@@ -84,47 +136,78 @@ CREATE TABLE `product` (
   `detail` text DEFAULT NULL,
   `stock` int(11) DEFAULT 0,
   `photo` text DEFAULT NULL,
+  `photo1` text DEFAULT NULL,
+  `photo2` text DEFAULT NULL,
+  `active` tinyint(4) DEFAULT 0,
   `createdAt` datetime DEFAULT NULL,
-  `updatedAt` datetime DEFAULT NULL,
-  `active` tinyint(4) DEFAULT 0
+  `updatedAt` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `product_id`, `name`, `price`, `detail`, `stock`, `photo`, `createdAt`, `updatedAt`, `active`) VALUES
-(1, 'TG-ECHO001CA', 'Calbilberry', '650.00', 'dfhnijgsfuihusihguifhuidfhnij', 120, 'img/product/p1.png', '2020-07-21 13:51:28', '2020-07-21 13:51:29', 0),
-(2, 'TG-ECHO004CO', 'Collysine', '450.00', 'dfhnijgsfuihusihguifhuidfhnij', 120, 'img/product/p2.png', '2020-07-21 13:51:31', '2020-07-21 13:51:32', 0),
-(3, 'TG-ECHO003RI', 'Riciomeg', '550.00', 'dfhnijgsfuihusihguifhuidfhnij', 120, 'img/product/p3.png', '2020-07-21 13:51:41', '2020-07-21 13:51:32', 0),
-(4, 'TG-ECHO002VI', 'Vitaoxxy FP', '650.00', 'dfhnijgsfuihusihguifhuidfhnij', 120, 'img/product/p4.png', '2020-07-21 13:51:41', '2020-07-21 13:51:33', 0),
-(24, 'OAT-8000', 'Big Brother', '5000.00', 'Good', 12, 'img/productS__18309123.jpg', '2020-07-21 17:36:53', '2020-07-21 17:36:53', 1);
+INSERT INTO `product` (`id`, `product_id`, `name`, `price`, `detail`, `stock`, `photo`, `photo1`, `photo2`, `active`, `createdAt`, `updatedAt`) VALUES
+(1, 'TG-ECHO001CA', 'Calbilberry', '650.00', 'Goodd', 100, 'img/product/p1.png', 'img/product/p1.png', 'img/product/p1.png', 0, '2020-07-21 13:51:28', '2020-07-23 08:44:03'),
+(2, 'TG-ECHO004CO', 'Collysine', '450.00', 'Good', 100, 'img/product/p2.png', NULL, NULL, 0, '2020-07-21 13:51:31', '2020-07-23 08:44:19'),
+(3, 'TG-ECHO003RI', 'Riciomeg', '550.00', 'Good', 100, 'img/product/p3.png', NULL, NULL, 0, '2020-07-21 13:51:41', '2020-07-23 08:44:11'),
+(4, 'TG-ECHO002VI', 'Vitaoxxy FP', '650.00', 'Good', 100, 'img/product/p4.png', NULL, NULL, 0, '2020-07-21 13:51:41', '2020-07-23 08:43:55'),
+(35, 'OAT-8000', 'Big Brother', '5000.00', 'Good', 1, 'img/product1.jpg', 'img/product1.jpg', 'img/product1.jpg', 0, '2020-07-23 11:11:44', '2020-07-23 11:11:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shippingcost`
+--
+
+CREATE TABLE `shippingcost` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `cost` varchar(255) NOT NULL,
+  `type` enum('EMS','Flash') NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `buy_product`
+-- Indexes for table `bank`
 --
-ALTER TABLE `buy_product`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `productID` (`productID`);
+ALTER TABLE `bank`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `buy_productID` (`buy_productID`),
-  ADD KEY `paymentID` (`paymentID`);
+  ADD KEY `paymentID` (`paymentID`),
+  ADD KEY `buy_productID` (`orderID`) USING BTREE;
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `productID` (`productID`);
 
 --
 -- Indexes for table `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `buy_productID` (`buy_productID`);
+  ADD KEY `buy_productID` (`orderID`) USING BTREE,
+  ADD KEY `bankID` (`bankID`),
+  ADD KEY `statusID` (`payment_statusID`) USING BTREE;
+
+--
+-- Indexes for table `payment_status`
+--
+ALTER TABLE `payment_status`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -133,19 +216,31 @@ ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shippingcost`
+--
+ALTER TABLE `shippingcost`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `buy_product`
+-- AUTO_INCREMENT for table `bank`
 --
-ALTER TABLE `buy_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bank`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -155,33 +250,47 @@ ALTER TABLE `payment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `payment_status`
+--
+ALTER TABLE `payment_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `shippingcost`
+--
+ALTER TABLE `shippingcost`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `buy_product`
---
-ALTER TABLE `buy_product`
-  ADD CONSTRAINT `FK_buy_product_product` FOREIGN KEY (`productID`) REFERENCES `product` (`id`);
-
---
 -- Constraints for table `customer`
 --
 ALTER TABLE `customer`
-  ADD CONSTRAINT `FK_customer_buy_product` FOREIGN KEY (`buy_productID`) REFERENCES `buy_product` (`id`),
+  ADD CONSTRAINT `FK_customer_buy_product` FOREIGN KEY (`orderID`) REFERENCES `order` (`id`),
   ADD CONSTRAINT `FK_customer_payment` FOREIGN KEY (`paymentID`) REFERENCES `payment` (`id`);
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `FK_buy_product_product` FOREIGN KEY (`productID`) REFERENCES `product` (`id`);
 
 --
 -- Constraints for table `payment`
 --
 ALTER TABLE `payment`
-  ADD CONSTRAINT `FK_payment_buy_product` FOREIGN KEY (`buy_productID`) REFERENCES `buy_product` (`id`);
+  ADD CONSTRAINT `FK_payment_bank` FOREIGN KEY (`bankID`) REFERENCES `bank` (`id`),
+  ADD CONSTRAINT `FK_payment_buy_product` FOREIGN KEY (`orderID`) REFERENCES `order` (`id`),
+  ADD CONSTRAINT `FK_payment_payment_status` FOREIGN KEY (`payment_statusID`) REFERENCES `payment_status` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
