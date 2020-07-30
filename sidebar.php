@@ -91,12 +91,6 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                                 <p>Slip</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
-                                <i class="nav-icon fas fa-angle-right"></i>
-                                <p>Refund</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
@@ -111,9 +105,9 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="background" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
-                                <p>Null</p>
+                                <p>Background image</p>
                             </a>
                         </li>
                     </ul>
