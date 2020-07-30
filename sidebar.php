@@ -7,6 +7,10 @@ $data_productcount = mysqli_fetch_assoc($result_productcount);
 $sql_mybankcount = "select count(*) as mybankcount from bank ";
 $result_mybankcount = mysqli_query($conn, $sql_mybankcount);
 $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
+// Payment Count
+$sql_paymentcount = "select count(*) as paymentcount from payment ";
+$result_paymentcount = mysqli_query($conn, $sql_paymentcount);
+$data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
 
 ?>
 
@@ -37,7 +41,7 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                         <p>
                             Products
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right"><?php echo $data_productcount['productcount'];?></span>
+                            <span class="badge badge-info right"><?php echo $data_productcount['productcount']; ?></span>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -81,7 +85,7 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>
                                     My Bank
-                                    <span class="badge badge-info right"><?php echo $data_mybankcount['mybankcount'];?></span>
+                                    <span class="badge badge-info right"><?php echo $data_mybankcount['mybankcount']; ?></span>
                                 </p>
                             </a>
                         </li>
@@ -89,6 +93,7 @@ $data_mybankcount = mysqli_fetch_assoc($result_mybankcount);
                             <a href="payment" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Slip</p>
+                                <span class="badge badge-info right"><?php echo $data_paymentcount['paymentcount']; ?></span>
                             </a>
                         </li>
                     </ul>

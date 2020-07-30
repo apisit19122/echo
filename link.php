@@ -1,3 +1,4 @@
+<link rel="shortcut icon" href="img/product/p1.png" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
