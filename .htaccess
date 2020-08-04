@@ -8,4 +8,7 @@
     RewriteRule mybank bank.php
     RewriteRule payment payments.php
     RewriteRule background background_image.php
+    RewriteRule orders order.php
+    RewriteRule name_address name_address.php
+    RewriteRule information companyinformation.php
 </IfModule>

@@ -110,6 +110,22 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="information" class="nav-link">
+                                <i class="nav-icon fas fa-angle-right"></i>
+                                <p>Company information</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="name_address" class="nav-link">
+                                <i class="nav-icon fas fa-angle-right"></i>
+                                <p>Name Address</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
                             <a href="background" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Background image</p>

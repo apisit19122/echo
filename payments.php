@@ -60,7 +60,7 @@ require_once("config/connect.config.php");
                                             <thead>
                                                 <tr style="text-align: center;">
                                                     <th>Payment #ID</th>
-                                                    <th>Credit</th>
+                                                    <th>Paytotal</th>
                                                     <th>CreatedAt</th>
                                                     <th>Status</th>
                                                     <th></th>
@@ -72,12 +72,14 @@ require_once("config/connect.config.php");
                                                 $sql_payment = "SELECT
                                                 t1.id,
                                                 t1.createdAt AS ONE,
-                                                t1.credit,
+                                                t1.paytotal,
                                                 t1.img,
+                                                t1.date1,
+                                                t1.time1,
                                                 t1.orderID,
                                                 t1.bankID,
                                                 t1.payment_statusID,
-                                                t2.order_code,
+                                                t2.runnumber,
                                                 t2.createdAt AS createdAtOrder,
                                                 t3.namebank,
                                                 t4.status_name
@@ -85,7 +87,7 @@ require_once("config/connect.config.php");
                                                     (
                                                     SELECT
                                                         id AS o_id,
-                                                        order_code,
+                                                        runnumber,
                                                         createdAt
                                                     FROM
                                                         `order`
@@ -101,7 +103,7 @@ require_once("config/connect.config.php");
                                                 ?>
                                                     <tr>
                                                         <td style="text-align: center; width: 2%;"><?php echo $data_payment['id']; ?></td>
-                                                        <td style="text-align: center; width: 5%;"><?php echo $data_payment['credit']; ?></td>
+                                                        <td style="text-align: center; width: 5%;"><?php echo $data_payment['paytotal']; ?></td>
                                                         <td style="text-align: center; width: 5%;"><?php echo $data_payment['ONE']; ?></td>
 
                                                         <td style="text-align: center; width: 5%;">
@@ -148,16 +150,20 @@ require_once("config/connect.config.php");
                                                                                         <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_payment['id']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Credit</label>
-                                                                                        <input type="text" class="form-control" name="update_credit" value="<?php echo $data_payment['credit']; ?>" readonly>
+                                                                                        <label for="">PayTotal</label>
+                                                                                        <input type="text" class="form-control" name="update_paytotal" value="<?php echo $data_payment['paytotal']; ?>" readonly>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Order</label>
-                                                                                        <input type="text" class="form-control" name="update_orderID" value="<?php echo $data_payment['order_code']; ?>" readonly>
+                                                                                        <input type="text" class="form-control" name="update_orderID" value="<?php echo $data_payment['runnumber']; ?>" readonly>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <label for="">Bank</label>
                                                                                         <input type="text" class="form-control" name="update_bankID" value="<?php echo $data_payment['namebank']; ?>" readonly>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label for="">Data / Time</label>
+                                                                                        <input type="text" class="form-control" name="update_bankID" value="<?php echo $data_payment['date1'];?> | <?php echo $data_payment['time1']; ?>" readonly>
                                                                                     </div>
                                                                                     <label for="">Status</label>
                                                                                     <?php
