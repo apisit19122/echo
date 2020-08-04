@@ -79,7 +79,8 @@ function table()
                                                 $sql_news = "SELECT * FROM news";
                                                 $query_news = mysqli_query($conn, $sql_news);
                                                 while ($row = mysqli_fetch_array($query_news, MYSQLI_ASSOC)) {
-                                                ?>
+                                                ?> 
+                                                
                                                     <tr>
                                                         <td style="text-align: center; width: 20%;"><?php echo $row['topic']; ?></td>
                                                         <td style="text-align: center; width: 15%;"><img src="<?php echo $row['img']; ?>" width="100px" height="90px" alt=""></td>
@@ -104,52 +105,46 @@ function table()
                                                                                 <div class="col-4">
 
                                                                                     <?php
-                                                                                    $photo = $data_product['photo'];
+                                                                                    $photo = $row['img'];
                                                                                     if (!empty($photo)) {
                                                                                         echo "<img src='$photo' alt='' width='100%' >";
                                                                                     }
-                                                                                    ?>
-
-                                                                                    <?php
-                                                                                    $photo1 = $data_product['photo1'];
-                                                                                    if (!empty($photo1)) {
-                                                                                        echo "<img src='$photo1' alt='' width='100%' >";
-                                                                                    }
-                                                                                    ?>
-
-                                                                                    <?php
-                                                                                    $photo2 = $data_product['photo2'];
-                                                                                    if (!empty($photo2)) {
-                                                                                        echo "<img src='$photo2' alt='' width='100%' >";
-                                                                                    }
+                                                                                    
+                                                                                    // $photo1 = $row['photo1'];
+                                                                                    // if (!empty($photo1)) {
+                                                                                    //     echo "<img src='$photo1' alt='' width='100%' >";
+                                                                                    // }
+                                                                                
+                                                                                    // $photo2 = $row['photo2'];
+                                                                                    // if (!empty($photo2)) {
+                                                                                    //     echo "<img src='$photo2' alt='' width='100%' >";
+                                                                                    // }
                                                                                     ?>
 
                                                                                 </div>
                                                                                 <div class="col">
-                                                                                    <div class="form-group">
-                                                                                        <input type="hidden" class="form-control" name="update_id" value="<?php echo $data_product['id']; ?>">
-                                                                                    </div>
+                                                                                    <p style="color: #ffff;">CreatedAt : <?php echo $row['createdAt']; ?></p> 
                                                                                     <div class="form-group">
                                                                                         <label for="">Product #ID</label>
-                                                                                        <input type="text" class="form-control" name="update_productid" value="<?php echo $data_product['product_id']; ?>">
+                                                                                        <input type="text" class="form-control" name="update_id" value="<?php echo $row['id']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Name</label>
-                                                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $data_product['name']; ?>">
+                                                                                        <label for="">Topic</label>
+                                                                                        <input type="text" class="form-control" name="update_topic" value="<?php echo $row['topic']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Detail</label>
-                                                                                        <input type="text" class="form-control" name="update_detail" value="<?php echo $data_product['detail']; ?>">
+                                                                                        <label for="">Material</label>
+                                                                                        <input type="text" class="form-control" name="update_material" value="<?php echo $row['material']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Price</label>
-                                                                                        <input type="text" class="form-control" name="update_price" value="<?php echo $data_product['price']; ?>">
+                                                                                        <label for="">Refer</label>
+                                                                                        <input type="text" class="form-control" name="update_refer" value="<?php echo $row['refer']; ?>">
                                                                                     </div>
                                                                                     <div class="form-group">
-                                                                                        <label for="">Product Stock</label>
-                                                                                        <input type="text" class="form-control" name="update_stock" value="<?php echo $data_product['stock']; ?>">
+                                                                                        <label for="">Status</label>
+                                                                                        <input type="text" class="form-control" name="update_status" value="<?php echo $row['status']; ?>">
                                                                                     </div>
-
+                                                                                  
                                                                                     <div class="form-group">
                                                                                         <label for="exampleInputFile">Product Image File</label>
                                                                                         <div class="input-group">

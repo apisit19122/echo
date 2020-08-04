@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2020 at 04:33 AM
+-- Generation Time: Aug 04, 2020 at 07:06 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -39,7 +39,7 @@ CREATE TABLE `background_image` (
 --
 
 INSERT INTO `background_image` (`id`, `img_name`, `createdAt`, `updatedAt`) VALUES
-(1, 'img/bg_img/bg1.jpg', '2020-07-30 15:07:25', '2020-07-30 16:19:13');
+(1, 'img/bg_img/bg1.jpg', '2020-07-30 15:07:25', '2020-08-03 16:08:12');
 
 -- --------------------------------------------------------
 
@@ -68,6 +68,37 @@ INSERT INTO `bank` (`id`, `name`, `namebank`, `account`, `promptpay`, `photo`, `
 (9, 'test', 'ธนาคารกรุงไทย', ' 1234', '12345', 'img/money/ktb.jpg', 0, '2020-07-23 09:10:38', '2020-07-23 09:56:58'),
 (10, 'test', 'ธนาคารไทยพาณิชย์', ' 1234', '1234', 'img/money/scb.jpg', 0, '2020-07-23 09:35:36', '2020-07-23 09:35:36'),
 (11, 'test', 'ธนาคารกรุงเทพ', ' 1234', '1234', 'img/money/BBL.png', 0, '2020-07-23 09:38:49', '2020-07-23 11:12:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_information`
+--
+
+CREATE TABLE `company_information` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(225) DEFAULT NULL,
+  `name_company` varchar(225) DEFAULT NULL,
+  `about` varchar(225) DEFAULT NULL,
+  `vision` varchar(225) DEFAULT NULL,
+  `history` varchar(225) DEFAULT NULL,
+  `mision` varchar(50) DEFAULT NULL,
+  `img_promote` text DEFAULT NULL,
+  `logo_icon` text DEFAULT NULL,
+  `logo` text DEFAULT NULL,
+  `img_factory` text DEFAULT NULL,
+  `img_production` text DEFAULT NULL,
+  `img_map` text DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `company_information`
+--
+
+INSERT INTO `company_information` (`id`, `name`, `name_company`, `about`, `vision`, `history`, `mision`, `img_promote`, `logo_icon`, `logo`, `img_factory`, `img_production`, `img_map`, `createdAt`, `updatedAt`) VALUES
+(1, 'Echo health Extra life', 'Echo health co.,Ltd.', 'Echo health co.,ltd was established in 2020. Our objectives are to develop', 'เชื่ยวชาญด้านการพัฒนา และคิดop;iopiopค้น นวัตกรรมของผลิตภัณฑ์เสริมอาหาร ', 'Echo health co.,ltd was established in 2020. Our objectives are to develop dietary supplement, medical food and herbal medicine for serving to our priority customer. We intentionally focus on searching the best ingredients fr', 'มุ่งมั่นในการค้นคว้า วิจัยและพัฒนา นวัตกรรมที่ก้าว', 'img/logo_/Cal-Bilberry1.png', 'img/logo_/S__18309123.jpg', 'img/logo_/S__18309123.jpg', 'img/logo_/S__18309123.jpg', 'img/logo_/S__18309123.jpg', 'img/logo_/S__18309123.jpg', '2020-08-04 09:33:16', '2020-08-04 10:19:02');
 
 -- --------------------------------------------------------
 
@@ -115,7 +146,31 @@ CREATE TABLE `namewebsite` (
 --
 
 INSERT INTO `namewebsite` (`nw_id`, `nw_name`, `address`, `email`, `tel`, `createdAt`, `updatedAt`) VALUES
-(1, 'ECHO HEALTH CO.,LTD.', '214 Sirindhorn Rd., Bangplath, Bangplath, Bangkok 10700', '+66 655 099 999', '+66 655 099 888', '2020-07-31 15:50:39', '0000-00-00 00:00:00');
+(1, 'ECHO HEALTH CO.,LTD.', '214 Sirindhorn Rd., Bangplath, Bangplath, Bangkok 10700', 'ไปใส่เอาลืม', '+66 655 099 888', '2020-07-31 15:50:39', '2020-08-03 14:27:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` int(11) NOT NULL,
+  `topic` varchar(225) DEFAULT NULL,
+  `material` varchar(225) DEFAULT NULL,
+  `img` mediumtext DEFAULT NULL,
+  `refer` varchar(100) DEFAULT NULL,
+  `status` enum('แนะนำ','ธรรมดา') DEFAULT NULL,
+  `createdAt` datetime DEFAULT NULL,
+  `updatedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `topic`, `material`, `img`, `refer`, `status`, `createdAt`, `updatedAt`) VALUES
+(1, 'Echo', 'asdasdasdasdfgdgwergergsdrg', 'asd', '123465', NULL, '2020-08-04 10:50:39', '2020-08-04 10:50:40');
 
 -- --------------------------------------------------------
 
@@ -193,7 +248,7 @@ CREATE TABLE `payment` (
 --
 
 INSERT INTO `payment` (`id`, `paytotal`, `img`, `date1`, `time1`, `createdAt`, `updatedAt`, `orderID`, `bankID`, `payment_statusID`) VALUES
-(3, '14000.00', 'img/money/S__8822811.jpg', '2020-07-31', '11:54:01', '2020-07-23 16:49:00', '2020-07-30 16:06:15', 3, 1, 1);
+(3, '14000.00', 'img/money/S__8822811.jpg', '2020-07-31', '11:54:01', '2020-07-23 16:49:00', '2020-08-03 16:07:27', 3, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -302,6 +357,12 @@ ALTER TABLE `namewebsite`
   ADD PRIMARY KEY (`nw_id`) USING BTREE;
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `order`
 --
 ALTER TABLE `order`
@@ -374,6 +435,12 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `namewebsite`
   MODIFY `nw_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order`
