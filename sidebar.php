@@ -28,7 +28,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
 
                 <li class="nav-header">Menu</li>
                 <li class="nav-item">
-                    <a href="home" class="nav-link">
+                    <a href="index.php" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Overview
@@ -46,7 +46,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="product" class="nav-link">
+                            <a href="product.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>List</p>
                             </a>
@@ -64,7 +64,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="orders" class="nav-link">
+                            <a href="order.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>List</p>
                             </a>
@@ -81,7 +81,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="mybank" class="nav-link">
+                            <a href="bank.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>
                                     My Bank
@@ -90,7 +90,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="payment" class="nav-link">
+                            <a href="payments.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Slip</p>
                                 <span class="badge badge-info right"><?php echo $data_paymentcount['paymentcount']; ?></span>
@@ -110,7 +110,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="information" class="nav-link">
+                            <a href="companyinformation.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Company information</p>
                             </a>
@@ -118,7 +118,7 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="name_address" class="nav-link">
+                            <a href="name_address.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Name Address</p>
                             </a>
@@ -126,9 +126,17 @@ $data_paymentcount = mysqli_fetch_assoc($result_paymentcount);
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="background" class="nav-link">
+                            <a href="background_image.php" class="nav-link">
                                 <i class="nav-icon fas fa-angle-right"></i>
                                 <p>Background image</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="news.php" class="nav-link">
+                                <i class="nav-icon fas fa-angle-right"></i>
+                                <p>News</p>
                             </a>
                         </li>
                     </ul>

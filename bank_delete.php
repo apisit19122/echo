@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
     echo "<script>";
     echo "alert('Delete bank list successfully');";
-    echo "window.location='mybank'";
+    echo "window.location='bank.php'";
     echo "</script>";
 }
 

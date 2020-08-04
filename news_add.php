@@ -109,6 +109,11 @@ if (isset($_POST['product_add'])) {
         $sql_productadd = "INSERT into product (product_id, name, price, detail, stock, photo, createdAt, updatedAt) 
                             values('$product_id','$name',' $price','$detail','$stock','$photo', NOW(), NOW())";
         mysqli_query($conn, $sql_productadd) or die("insert ไม่ได้");
+
+        // echo "<script>";
+        // echo "alert('Add product successfully');";
+        // echo "window.location='product.php';";
+        // echo "</script>";
     }
     $id = mysqli_insert_id($conn);
 
@@ -135,6 +140,6 @@ if (isset($_POST['product_add'])) {
             button: false,
         });
     </script>';
-    echo '<meta http-equiv="refresh" content="2; url=product.php" />';
+    echo '<meta http-equiv="refresh" content="2; url=product" />';
 }
 ?>

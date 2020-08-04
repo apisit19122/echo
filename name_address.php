@@ -110,7 +110,7 @@ require_once("config/connect.config.php");
                                                             button: false,
                                                         });
                                                     </script>';
-                                                echo '<meta http-equiv="refresh" content="1; url=name_address" />';
+                                                echo '<meta http-equiv="refresh" content="1; url=name_address.php" />';
                                             
                                         }
                                         ?>

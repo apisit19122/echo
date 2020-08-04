@@ -273,7 +273,7 @@ require_once("config/connect.config.php");
                                                                     button: false,
                                                                 });
 											                </script>';
-                                                        echo '<meta http-equiv="refresh" content="1; url=payment" />';
+                                                        echo '<meta http-equiv="refresh" content="1; url=payments.php" />';
                                                     }
                                                 } //end while
                                                 mysqli_close($conn);

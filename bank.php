@@ -235,7 +235,7 @@ require_once("config/connect.config.php");
                                                                     button: false,
                                                                 });
 											                </script>';
-                                                            echo '<meta http-equiv="refresh" content="2; url=mybank" />';
+                                                            echo '<meta http-equiv="refresh" content="2; url=bank.php" />';
                                                         } else {
                                                             $sql_updatabank = "UPDATE `bank` SET `name` ='$name', `namebank` ='$namebank', `account` ='$account', 
                                                           `promptpay` ='$promptpay', `active` = '$active', `updatedAt` = NOW()
@@ -255,7 +255,7 @@ require_once("config/connect.config.php");
                                                                     button: false,
                                                                 });
 											                </script>';
-                                                            echo '<meta http-equiv="refresh" content="2; url=mybank" />';
+                                                            echo '<meta http-equiv="refresh" content="2; url=bank.php" />';
                                                         }
                                                     }
                                                 } //end while

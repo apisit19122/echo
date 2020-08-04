@@ -135,7 +135,7 @@ require_once("config/connect.config.php");
                                                             button: false,
                                                         });
                                                     </script>';
-                                                echo '<meta http-equiv="refresh" content="1; url=information" />';
+                                                echo '<meta http-equiv="refresh" content="1; url=companyinformation.php" />';
                                             }
                                             ?>
 

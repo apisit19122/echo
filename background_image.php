@@ -133,7 +133,7 @@ require_once("config/connect.config.php");
                                                                     button: false,
                                                                 });
 											                </script>';
-                                                    echo '<meta http-equiv="refresh" content="1; url=background" />';
+                                                    echo '<meta http-equiv="refresh" content="1; url=background_image.php" />';
                                                 }
                                             }
                                         } //end while

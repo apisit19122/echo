@@ -16,7 +16,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
 
@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
     } elseif (!empty($_FILES['logo'])) {
@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
     } elseif (!empty($_FILES['img_factory'])) {
@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
     } elseif (!empty($_FILES['img_production'])) {
@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
     } elseif (!empty($_FILES['img_map'])) {
@@ -92,7 +92,7 @@ if (isset($_GET['id'])) {
 
             echo "<script>";
             echo "alert('Update Information list successfully');";
-            echo "window.location='information';";
+            echo "window.location='companyinformation.php';";
             echo "</script>";
         }
     }
@@ -102,7 +102,7 @@ if (isset($_GET['id'])) {
 else {
     echo "<script>";
     echo "alert('Update Information list Error');";
-    echo "window.location='information';";
+    echo "window.location='companyinformation.php';";
     echo "</script>";
 }
 ?>

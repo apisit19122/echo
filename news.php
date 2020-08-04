@@ -37,12 +37,12 @@ function table()
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Product</h1>
+                            <h1 class="m-0 text-dark">News</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Product</li>
+                                <li class="breadcrumb-item active">News</li>
 
                             </ol>
                         </div>
@@ -67,39 +67,28 @@ function table()
                                         <table id="example2" class="table table-bordered table-hover">
                                             <thead>
                                                 <tr style="text-align: center;">
-                                                    <th>Product #ID</th>
-                                                    <th>img</th>
-                                                    <th>Name</th>
-                                                    <th>Stock</th>
+                                                    <th>News #ID</th>
+                                                    <th>Image</th>
+                                                    <th>Category</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
 
                                                 <?php
-                                                $sql_product = "SELECT * FROM product";
-                                                $query_product = mysqli_query($conn, $sql_product);
-                                                while ($data_product = mysqli_fetch_array($query_product, MYSQLI_ASSOC)) {
+                                                $sql_news = "SELECT * FROM news";
+                                                $query_news = mysqli_query($conn, $sql_news);
+                                                while ($row = mysqli_fetch_array($query_news, MYSQLI_ASSOC)) {
                                                 ?>
                                                     <tr>
-                                                        <td style="text-align: center; width: 20%;"><?php echo $data_product['product_id']; ?></td>
-                                                        <td style="text-align: center; width: 15%;"><img src="<?php echo $data_product['photo']; ?>" width="100px" height="90px" alt=""></td>
-                                                        <td style="text-align: center; width: 20%;"><?php echo $data_product['name']; ?></td>
+                                                        <td style="text-align: center; width: 20%;"><?php echo $row['topic']; ?></td>
+                                                        <td style="text-align: center; width: 15%;"><img src="<?php echo $row['img']; ?>" width="100px" height="90px" alt=""></td>
+                                                        <td style="text-align: center; width: 20%;"><?php echo $row['status']; ?></td>
 
-                                                        <?php
-                                                        $stock = $data_product['stock'];
-                                                        if ($stock == 0) {
-                                                            echo ' <td style="text-align: right; width: 5%; color: red;">Out Of Stock</td>';
-                                                        } else {
-                                                            echo "<td style='text-align: right; width: 5%;'> $stock</td>";
-                                                        }
-                                                        ?>
-
-
-                                                        <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $data_product['id']; ?>"><i style="font-size: 40px;" class="fas fa-eye"></i></a></td>
+                                                        <td style="text-align: center; width: 5%;"><a href="/" data-toggle="modal" data-target="#view<?php echo $row['id']; ?>"><i style="font-size: 40px;" class="fas fa-eye"></i></a></td>
 
                                                         <!-- Model ProductDetail -->
-                                                        <div class="modal fade" id="view<?php echo $data_product['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="view<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-lg">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -225,7 +214,7 @@ function table()
                                                                     button: false,
                                                                 });
                                                             </script>';
-                                                            echo '<meta http-equiv="refresh" content="2; url=product.php" />';
+                                                            echo '<meta http-equiv="refresh" content="2; url=product" />';
                                                         } else {
                                                             $sql_updataproduct = "UPDATE `product` SET `product_id` ='$product_id', `name` ='$name', `price` ='$price', 
                                                           `detail` ='$detail', `stock` ='$stock', `updatedAt` = NOW()
@@ -244,7 +233,7 @@ function table()
                                                                     button: false,
                                                                 });
                                                             </script>';
-                                                            echo '<meta http-equiv="refresh" content="2; url=product.php" />';
+                                                            echo '<meta http-equiv="refresh" content="2; url=product" />';
                                                         }
                                                     }
                                                 } //end while

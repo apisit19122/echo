@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
     echo "<script>";
     echo "alert('Delete Product list successfully');";
-    echo "window.location='product'";
+    echo "window.location='product.php'";
     echo "</script>";
 }
 

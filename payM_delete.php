@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 
     echo "<script>";
     echo "alert('Delete payment list successfully');";
-    echo "window.location='payment'";
+    echo "window.location='payments.php'";
     echo "</script>";
 }
 

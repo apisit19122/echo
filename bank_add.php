@@ -79,7 +79,7 @@ if (isset($_POST['bank_add'])) {
                     button: false,
                 });
             </script>';
-        echo '<meta http-equiv="refresh" content="2; url=mybank" />';
+        echo '<meta http-equiv="refresh" content="2; url=bank.php" />';
     }
 }
 ?>
