@@ -35,7 +35,69 @@ if (isset($_GET['id'])) {
             echo "window.location='information';";
             echo "</script>";
         }
+    } elseif (!empty($_FILES['logo'])) {
+        $uploaddir = 'img/logo_/';
+        $uploadfile = $uploaddir . basename($_FILES['logo']['name']);
+
+        if (move_uploaded_file($_FILES['logo']['tmp_name'], $uploadfile)) {
+            $photo = "img/logo_/" . $_FILES["logo"]["name"];
+
+            $sql = "UPDATE `company_information` SET `logo` ='$photo', `updatedAt` = NOW() WHERE `id` = '$id'";
+            mysqli_query($conn, $sql) or die("logo อัพเดทไม่ได้");
+
+            echo "<script>";
+            echo "alert('Update Information list successfully');";
+            echo "window.location='information';";
+            echo "</script>";
+        }
+    } elseif (!empty($_FILES['img_factory'])) {
+        $uploaddir = 'img/logo_/';
+        $uploadfile = $uploaddir . basename($_FILES['img_factory']['name']);
+
+        if (move_uploaded_file($_FILES['img_factory']['tmp_name'], $uploadfile)) {
+            $photo = "img/logo_/" . $_FILES["img_factory"]["name"];
+
+            $sql = "UPDATE `company_information` SET `img_factory` ='$photo', `updatedAt` = NOW() WHERE `id` = '$id'";
+            mysqli_query($conn, $sql) or die("img_factory อัพเดทไม่ได้");
+
+            echo "<script>";
+            echo "alert('Update Information list successfully');";
+            echo "window.location='information';";
+            echo "</script>";
+        }
+    } elseif (!empty($_FILES['img_production'])) {
+        $uploaddir = 'img/logo_/';
+        $uploadfile = $uploaddir . basename($_FILES['img_production']['name']);
+
+        if (move_uploaded_file($_FILES['img_production']['tmp_name'], $uploadfile)) {
+            $photo = "img/logo_/" . $_FILES["img_production"]["name"];
+
+            $sql = "UPDATE `company_information` SET `img_production` ='$photo', `updatedAt` = NOW() WHERE `id` = '$id'";
+            mysqli_query($conn, $sql) or die("img_production อัพเดทไม่ได้");
+
+            echo "<script>";
+            echo "alert('Update Information list successfully');";
+            echo "window.location='information';";
+            echo "</script>";
+        }
+    } elseif (!empty($_FILES['img_map'])) {
+        $uploaddir = 'img/logo_/';
+        $uploadfile = $uploaddir . basename($_FILES['img_map']['name']);
+
+        if (move_uploaded_file($_FILES['img_map']['tmp_name'], $uploadfile)) {
+            $photo = "img/logo_/" . $_FILES["img_map"]["name"];
+
+            $sql = "UPDATE `company_information` SET `img_map` ='$photo', `updatedAt` = NOW() WHERE `id` = '$id'";
+            mysqli_query($conn, $sql) or die("img_map อัพเดทไม่ได้");
+
+            echo "<script>";
+            echo "alert('Update Information list successfully');";
+            echo "window.location='information';";
+            echo "</script>";
+        }
     }
+
+    
 }
 else {
     echo "<script>";

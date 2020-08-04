@@ -76,24 +76,24 @@ require_once("config/connect.config.php");
                                                 <div class="container">
                                                     <div class="form-group">
                                                         <label for="">Name</label>
-                                                        <input type="text" class="form-control" name="update_name" value="<?php echo $name; ?>">
+                                                        <input type="text" class="form-control" name="name" value="<?php echo $name; ?>">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">Company</label>
-                                                        <input type="text" class="form-control" name="update_address" value="<?php echo $name_company; ?>">
+                                                        <input type="text" class="form-control" name="name_company" value="<?php echo $name_company; ?>">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">About</label>
-                                                        <input type="text" class="form-control" name="update_email" value="<?php echo $about; ?>">
+                                                        <input type="text" class="form-control" name="about" value="<?php echo $about; ?>">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">Vision</label>
-                                                        <input type="text" class="form-control" name="update_tel" value="<?php echo $vision; ?>">
+                                                        <input type="text" class="form-control" name="vision" value="<?php echo $vision; ?>">
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="">History</label>
                                                         <!-- <input type="text" class="form-control" > -->
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="update_tel" value=""><?php echo $history; ?></textarea>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="history" value=""><?php echo $history; ?></textarea>
                                                     </div>
                                                     <div class="form-group text-center">
                                                         <button type="Submit" name="btn_update" class="btn btn-info"><i class="fas fa-edit"></i> Update</button>
@@ -112,6 +112,32 @@ require_once("config/connect.config.php");
                                                     </div>
                                                 </div>
                                             </form>
+
+                                            <?php
+                                            if (isset($_POST['btn_update'])) {
+
+                                                $update_name = $_POST['name'];
+                                                $update_name_company = $_POST['name_company'];
+                                                $update_about = $_POST['about'];
+                                                $update_vision = $_POST['vision'];
+                                                $update_history = $_POST['history'];
+
+
+                                                $sql = "UPDATE `company_information` SET `name` ='$update_name', `name_company` ='$update_name_company', `about` ='$update_about', `vision` ='$update_vision', `history` ='$update_history', `updatedAt` = NOW() WHERE `id` = '$id'";
+                                                mysqli_query($conn, $sql) or die("Information อัพเดทไม่ได้");
+
+                                                echo '
+                                                    <script language="JavaScript">
+                                                        swal({
+                                                            title: "Successfully",
+                                                            text: "Update Information",
+                                                            icon: "success",
+                                                            button: false,
+                                                        });
+                                                    </script>';
+                                                echo '<meta http-equiv="refresh" content="1; url=information" />';
+                                            }
+                                            ?>
 
                                             <!-- Modal img_promote -->
                                             <div class="modal fade" id="img_promote" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,12 +200,12 @@ require_once("config/connect.config.php");
                                                         <div class="modal-body" style="text-align: center;">
                                                             <img src="<?php echo $logo; ?>" alt="logo" width="60%">
                                                             <hr>
-                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                            <form action="update_inform.php?id=<?= $id ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlFile1">Example file input</label>
                                                                     <input type="file" class="form-control-file" name="logo" id="exampleFormControlFile1">
                                                                 </div>
-                                                                <button type="button" name="btn_logo" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
+                                                                <button type="Submit" name="btn_logo" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -198,12 +224,12 @@ require_once("config/connect.config.php");
                                                         <div class="modal-body" style="text-align: center;">
                                                             <img src="<?php echo $img_factory; ?>" alt="img_factory" width="60%">
                                                             <hr>
-                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                            <form action="update_inform.php?id=<?= $id ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlFile1">Example file input</label>
                                                                     <input type="file" class="form-control-file" name="img_factory" id="exampleFormControlFile1">
                                                                 </div>
-                                                                <button type="button" name="btn_img_factory" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
+                                                                <button type="Submit" name="btn_img_factory" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -222,12 +248,12 @@ require_once("config/connect.config.php");
                                                         <div class="modal-body" style="text-align: center;">
                                                             <img src="<?php echo $img_production; ?>" alt="img_production" width="60%">
                                                             <hr>
-                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                            <form action="update_inform.php?id=<?= $id ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlFile1">Example file input</label>
                                                                     <input type="file" class="form-control-file" name="img_production" id="exampleFormControlFile1">
                                                                 </div>
-                                                                <button type="button" name="btn_img_production" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
+                                                                <button type="Submit" name="btn_img_production" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -246,12 +272,12 @@ require_once("config/connect.config.php");
                                                         <div class="modal-body" style="text-align: center;">
                                                             <img src="<?php echo $img_map; ?>" alt="img_map" width="60%">
                                                             <hr>
-                                                            <form action="" method="post" enctype="multipart/form-data">
+                                                            <form action="update_inform.php?id=<?= $id ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="form-group">
                                                                     <label for="exampleFormControlFile1">Example file input</label>
                                                                     <input type="file" class="form-control-file" name="img_map" id="exampleFormControlFile1">
                                                                 </div>
-                                                                <button type="button" name="btn_img_map" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
+                                                                <button type="Submit" name="btn_img_map" class="btn btn-info"><i class="fas fa-edit"></i> Save changes</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -280,28 +306,3 @@ require_once("config/connect.config.php");
 </body>
 
 </html>
-
-<?php
-// if (isset($_POST['btn_update'])) {
-
-//     $update_name = $_POST['update_name'];
-//     $update_address = $_POST['update_address'];
-//     $update_email = $_POST['update_email'];
-//     $update_tel = $_POST['update_tel'];
-
-
-//     $sql_namewebsite = "UPDATE `namewebsite` SET `nw_name` ='$update_name', `address` ='$update_address', `email` ='$update_email', `tel` ='$update_tel', `updatedAt` = NOW() WHERE `nw_id` = '$id'";
-//     mysqli_query($conn, $sql_namewebsite) or die("Namewebsite อัพเดทไม่ได้");
-
-//     echo '
-//                                                     <script language="JavaScript">
-//                                                         swal({
-//                                                             title: "Successfully",
-//                                                             text: "Update Namewebsite",
-//                                                             icon: "success",
-//                                                             button: false,
-//                                                         });
-//                                                     </script>';
-//     echo '<meta http-equiv="refresh" content="1; url=name_address" />';
-// }
-?>
